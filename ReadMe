@@ -1,0 +1,17 @@
+The program contains 2 modules
+
+1. ConfigsForTests
+BaseOption.ini: configuration file where the user can ammend Appium server url, capabilities in the needed section
+(Sections presented are 'AppiumServer, 'NativeApp', 'WebApp')
+
+Capability.py: Class 'FillCapabilities' which receives dictionary from BaseOption.ini, and validates their usability for Native or Web app testing
+
+CalculatorElements.py: class Calculator with locators of the app and specific methods
+
+2. Tests
+ conftest.py: pytest fixtures for the tests
+2 fixtures initiating config parameters processing by the 'FillCapabilities' class depending on the needed capabilities (for native or for web app testing)
+2 fixtures depending on previous fixtures and initializing the driver based on those checked capabilities
+
+TestNativeApp.py: test of the Cos function processing by the Calculator app. The app was downloaded from here:
+https://apkpure.com/calculator/com.google.android.calculator

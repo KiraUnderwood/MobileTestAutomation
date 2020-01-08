@@ -1,0 +1,9 @@
+venv/*
+.pytest_cache/*
+.idea/*
+__pycache__/*
+Tests/__pycache__/*
+Tests/.pytest_cache/*
+ConfigsForTests/__pycache__/*
+debug.log
+
