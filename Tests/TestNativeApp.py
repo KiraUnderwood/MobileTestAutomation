@@ -10,6 +10,7 @@ https://apkpure.com/calculator/com.google.android.calculator
 and its elements locators are in CalculatorElements module
 
 Found a bug in this one! In this App Cos is not correctly calculated and the test fails.
+Tested on Nexus 5 API 27 emulator
 '''
 
 

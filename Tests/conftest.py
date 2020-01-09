@@ -11,6 +11,7 @@ config = configparser.RawConfigParser()
 config.optionxform = lambda option: option
 config.read('../ConfigsForTests/BaseOptions.ini')
 appium_server = config['AppiumServer']['server']
+site = config['WebSite']['site']
 
 '''
 pytest fixtures representing test setup and teardown
@@ -63,7 +64,9 @@ def driver_for_web(params_for_web):
        :return: driver
     """
     if isinstance(appium_server, str) and isinstance(params_for_web, dict):
-        driver = webdriver.Remote(appium_server, params_for_native)
+        driver = webdriver.Remote(appium_server, params_for_web)
+        driver.get(site)
+        driver.implicitly_wait(20)
         yield driver
         driver.quit()
 
