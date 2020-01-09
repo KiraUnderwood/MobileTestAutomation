@@ -11,6 +11,7 @@ config = configparser.RawConfigParser()
 config.optionxform = lambda option: option
 config.read('../ConfigsForTests/BaseOptions.ini')
 appium_server = config['AppiumServer']['server']
+appium_cloud_server = config['AppiumCloudServer']['server']
 site = config['WebSite']['site']
 
 '''
@@ -45,6 +46,19 @@ def driver_for_native(params_for_native):
 
 
 @pytest.fixture(scope="function")
+def cloud_driver_for_native(params_for_native):
+    """
+       Pytest fixture to initialize the driver for testing native app
+       :param params_for_native:  key=value dict with capabilities already checked by the named fixture
+       :return: driver
+    """
+    if isinstance(appium_cloud_server, str) and isinstance(params_for_native, dict):
+        driver = webdriver.Remote(appium_cloud_server, params_for_native)
+        yield driver
+        driver.quit()
+
+
+@pytest.fixture(scope="function")
 def params_for_web():
     """
     fixture checking the passed dict and determining if it is for Web apps
@@ -71,5 +85,17 @@ def driver_for_web(params_for_web):
         driver.quit()
 
 
-
+@pytest.fixture(scope="function")
+def cloud_driver_for_web(params_for_web):
+    """
+       Pytest fixture to initialize the driver for testing web apps
+       :param params_for_web:  key=value dict with capabilities already checked by the named fixture
+       :return: driver
+    """
+    if isinstance(appium_cloud_server, str) and isinstance(params_for_web, dict):
+        driver = webdriver.Remote(appium_cloud_server, params_for_web)
+        driver.get(site)
+        driver.implicitly_wait(20)
+        yield driver
+        driver.quit()
 
