@@ -10,6 +10,8 @@ CalculatorElements.py: class Calculator with locators of the app and specific me
 
 Branch "TestWeb" >> BookingCom.py: class Booking with locators for web app and methods
 
+Branch "Cloud"  >> Added Cloud server link section to BaseOption.ini
+
 2. Tests
  conftest.py: pytest fixtures for the tests
 2 fixtures initiating config parameters processing by the 'FillCapabilities' class depending on the needed capabilities (for native or for web app testing)
@@ -19,3 +21,5 @@ TestNativeApp.py: test of the Cos function processing by the Calculator app. The
 https://apkpure.com/calculator/com.google.android.calculator
 
 Branch "TestWeb" >> TestWebSite.py: test to search for hotels in a given by test operator location and check if any results are received
+
+Branch "Cloud"  >> Added 2 more fixtures for Cloud_driver to conftest.py and added TestNativeWithCloudDriver.py
